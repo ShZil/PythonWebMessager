@@ -9,6 +9,13 @@
 
   It's original and made as a school assignment.
 
+
+#### Execute:
+- SERVER: Open the server with a double click on `run.bat`.
+- CLIENT(S): Open a browser (like Google Chrome) and enter ____
+- - If you're on the same computer: `localhost:8008`;
+- - If not, the address shown at the top of the console. (similar to `123.456.789.000:8008`)
+
 #### Technical Details:
 **Entry point:**
 
