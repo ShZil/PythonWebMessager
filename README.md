@@ -1,5 +1,5 @@
 # Messager Application
-## Created by Shaked Dan Zilberman
+## Created by ShZil
 
 #### General Information:
   No, this is not a typo, it's intentionally without the 'n'.
@@ -62,14 +62,14 @@
 #### Ideas Paper -> Digital Copy
 
 _Implementations:_
-- [X] Update Interval ("Get /new_messages" every 2500ms)
+- [X] Update Interval ("Get /new_messages" every 500ms(?))
 - [ ] WebSocket -- HTTP Upgrade
 - [ ] Client software (python:socket) & locally-hosted HTML file
 - [ ] Socket.IO -- Websocket Upgrade
 - [ ] XMPP Protocol [the one WhatsApp uses]
 
 
-* Change token randomly for security.
+* Change token randomly for security. [DONE]
 
 #### Additional ideas:
 - [X] make: POST /invite?dst={chat_id}&user={username}
