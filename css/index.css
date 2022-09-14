@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Tommy";
+    src: url("Tommy font.otf");
+}
+
+* {
+    font-family: "Tommy", 'Helvetica', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.menu {
+    background-color: var(--menu);
+    width: 450px;
+    min-height: 300px;
+    margin: auto;
+    margin-top: 75px;
+    text-align: center;
+    box-shadow: 0px 5px 8px black;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+.tabs {
+    overflow: hidden;
+    background-color: var(--tabs);
+    border-radius: 10px 10px 0px 0px;
+    background: rgb(1,71,81);
+    background: linear-gradient(0deg, rgba(1,71,81,1) 0%, rgba(1,71,81,1) 26.8%, rgba(1,47,61,1) 26.8%);
+}
+
+.tabs button {
+    background: var(--tabs);
+    background: linear-gradient(0deg, #0000000f 0%, var(--tabs_button) 15%);
+    float: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 26px;
+    transition: 0.3s;
+    color: var(--text_passive);
+    font-weight: bold;
+    font-size: 180%;
+    width: 200px;
+    margin-bottom: 5%;
+}
+
+.tabs button.active {
+    background: var(--tabs_button_a);
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.420);
+    color: var(--text_passive); /* add clicked font colour here */
+}
+
+.tabs button:hover {
+    background: var(--tabs_button_h);
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.69);
+    color: white;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: none;
+}
+
+label {
+    font-size: 30px;
+    color: white; /* LABEL COLOUR HERE */
+    font-weight: 500;
+}
+
+input[type=submit] {
+    background-color: #022132;
+    color: var(--text_passive);
+    width: 70%;
+    height: 40px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 2.5px 2.5px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+input[type=submit]:hover {
+    background-color: #011628;
+    color: white;
+    box-shadow: 0px 2.5px 2.5px rgba(0,0,0,0.69);
+}
+
+input[type=text], input[type=password] {
+    background-color: var(--login);
+    color: var(--text_passive);
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+   outline: 1px solid var(--login);
+}
+
+input[type=text] + i, input[type=password] + i {
+    margin-left: -30px;
+    cursor: pointer;
+    color: var(--text_passive);
+}
+
+input[type=text]::placeholder, input[type=password]::placeholder {
+  color: var(--text_passive);
+  opacity: 0.69;
+}
+
+input[type=text]:-internal-autofill-selected + i, input[type=password]:-internal-autofill-selected + i {
+    color: black;
+}

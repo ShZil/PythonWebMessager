@@ -1,0 +1,277 @@
+
+/* Title bar of each chat */
+div.title {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text_passive);
+    background-color: var(--tabs);
+    text-align: center;
+    font-weight: bold;
+    padding-top: 3px;
+    font-size: 30px;
+    border-radius: 0px 7px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.title > span:not(.chat-menu) {
+    width: 100%;
+    text-align: center;
+}
+
+/* The chat (container of messages) */
+div.chat {
+    height: calc(100% - 30px);
+    width: 100%;
+    border-radius: 0px 7px 7px 0px;
+    display: none;
+    background-color: #dfdfdf;
+}
+
+div.chat#basic {
+    background-color: var(--tabs);
+}
+
+/* Logout button */
+span.logout {
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+h4.name {
+    margin: 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+div.chat-content {
+    background-color: #011628;
+    overflow-y: hidden; /* Changes to `auto` */
+    max-height: 100%;
+    height: calc(100% - 70px);
+    padding: 10px 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.chat-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+div.chat-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+div.chat-content::-webkit-scrollbar-thumb {
+    background: rgba(1, 1, 1, 0.1);
+}
+
+/* Handle on hover */
+div.chat-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(1, 1, 1, 0.15);
+}
+
+/* Handle on hover */
+div.chat-content::-webkit-scrollbar-thumb:active {
+    background: rgba(1, 1, 1, 0.25);
+}
+
+div.message > p > img {
+    min-width: 50px;
+    max-width: min(400px, 100%);
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+div.message::after {
+    content: '';
+	position: absolute;
+	top: 5px;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-top: 0;
+	margin-top: -5px;
+}
+
+div.left::after {
+	left: 0;
+	border-right-color: var(--message-color);
+	border-left: 0;
+	margin-left: -10px;
+}
+
+div.right::after {
+    right: 0;
+	border-left-color: var(--my-message-color);
+	border-right: 0;
+	margin-right: -10px;
+}
+
+div.message {
+    word-wrap: break-word;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: fit-content;
+    min-width: 80px;
+    max-width: 60%;
+    margin-top: 0;
+}
+
+div.right {
+    background-color: var(--my-message-color);
+    border-radius: 15px 0px 15px 15px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: auto;
+}
+
+div.right > .name {
+    color: var(--text_passive) !important;
+    text-shadow: 0px 0px 3px black;
+}
+
+div.left {
+    background-color: var(--message-color);
+    border-radius: 0px 15px 15px 15px;
+    padding: 10px;
+    margin: 10px;
+    margin-right: auto;
+    float: left;
+}
+
+div.message.right.top {
+    border-radius: 15px 0px 5px 5px;
+}
+
+div.message.top {
+    border-radius: 0px 15px 5px 5px;
+    margin-bottom: 1px;
+}
+
+div.message.middle {
+    border-radius: 5px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+div.message.bottom {
+    border-radius: 5px 5px 15px 15px;
+    margin-top: 1px;
+}
+
+div.message.bottom h4.name, div.message.middle h4.name {
+    display: none;
+}
+
+div.message.middle::after, div.message.bottom::after {
+    content: none;
+}
+
+div.time {
+    text-align: right;
+    width: 100%;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(1, 1, 1, 0.3);
+}
+
+div.date {
+    background-color: #333;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 20px;
+    height: fit-content;
+    width: 25%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+    align-items: center;
+    /* overflow: clip; */
+}
+
+div.date.server {
+    background-color: #157c00;
+    min-width: 60%;
+    max-width: 90%;
+    width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div.date.server a {
+    all: unset;
+    cursor: pointer;
+}
+
+div.date > .name, div.date > .time {
+    display: none;
+}
+
+div.write {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 12.5% 75% 12.5%;
+    gap: 0px 0px;
+    border-radius: 0px 0px 7px 0px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+div.write > textarea {
+    min-height: 25px;
+    background-color: var(--login);
+    color: var(--text_passive);
+    border: none;
+    outline: none;
+    word-break: break-word;
+    resize: none;
+    overflow: hidden;
+    max-height: 100px;
+    padding: 5px;
+}
+
+div.write > button {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+div.write > button#msg-button {
+    transition: background-color 0.2s ease;
+}
+
+div.write > textarea:disabled, div.write > button:disabled {
+    cursor: not-allowed;
+}
+
+span.chat-menu {
+    float: right;
+    font-size: 80%;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+div.message a {
+    text-decoration: inherit;
+}
+
+#basic > div > h1 {
+    text-align: center;
+}

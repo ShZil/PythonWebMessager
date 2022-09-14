@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shaked's Messager</title>
+    <link rel="stylesheet" href="palette.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="central.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="imaging.css">
+    <link rel="stylesheet" href="chat-menu.css">
+    <link rel="stylesheet" href="new_chat.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- https://fontawesome.com/v4/icons/ -->
+    <style>
+        /* Loading animation from https://projects.lukehaas.me/css-loaders/ */
+        .loader {
+            --fore: #bbb;
+            --back: #011628;
+            font-size: 10px;
+            margin: 50px auto;
+            text-indent: -9999em;
+            width: 11em;
+            height: 11em;
+            border-radius: 50%;
+            background: var(--fore);
+            background: -moz-linear-gradient(left, var(--fore) 10%, rgba(0, 0, 0, 0) 42%);
+            background: -webkit-linear-gradient(left, var(--fore) 10%, rgba(0, 0, 0, 0) 42%);
+            background: -o-linear-gradient(left, var(--fore) 10%, rgba(0, 0, 0, 0) 42%);
+            background: -ms-linear-gradient(left, var(--fore) 10%, rgba(0, 0, 0, 0) 42%);
+            background: linear-gradient(to right, var(--fore) 10%, rgba(0, 0, 0, 0) 42%);
+            position: relative;
+            -webkit-animation: load3 1.4s infinite linear;
+            animation: load3 1.4s infinite linear;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .loader:before {
+            width: 50%;
+            height: 50%;
+            background: var(--fore);
+            border-radius: 100% 0 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+        }
+
+        .loader:after {
+            background: var(--back);
+            width: 75%;
+            height: 75%;
+            border-radius: 50%;
+            content: '';
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .loader.dark-bg:after {
+            background: var(--menu);
+        }
+
+        .loader.dark-bg:before {
+            background: #ffffff;
+        }
+
+        .loader.dark-bg {
+            background: #ffffff;
+            background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        }
+
+        @-webkit-keyframes load3 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes load3 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <div class="sidebar">
+            <div class="profile">
+                <div style="padding: 5px" width="30" height="30" class="black-to-white reverse" tabindex="0"><i class="fa fa-user" onclick="userNav()" style="cursor: pointer" title="Search users"></i></div>
+                <h3 class="name" id="username">USERNAME HERE</h3>
+                <span class="logout fa fa-sign-out black-to-white reverse" onclick="logout();" title="Log out" tabindex="0"></span>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search chats here...">
+                <!-- <div class="float" id="create-chat">
+                    <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" width="80%"><defs><style>.cls-1{fill:var(--text_passive);}</style></defs><path class="cls-1" d="M141.73,63.78v14.17c0,7.83-6.35,14.17-14.17,14.17h-35.43v35.43c0,7.83-6.35,14.17-14.17,14.17h-14.17c-7.83,0-14.17-6.35-14.17-14.17v-35.43H14.17c-7.83,0-14.17-6.35-14.17-14.17v-14.17c0-7.83,6.35-14.17,14.17-14.17H49.61V14.17c0-7.83,6.35-14.17,14.17-14.17h14.17c7.83,0,14.17,6.35,14.17,14.17V49.61h35.43c7.83,0,14.17,6.35,14.17,14.17Z"/></svg>
+                </div> -->
+                <button type="button" id="create-chat" class="black-to-white"><i class="fa fa-plus" title="Create group"></i></button>
+            </div>
+            <div class="chat-container" id="chats-list">
+                <div id="no-chats" style="display: none">
+                    <h6>No chats found.</h6>
+                </div>
+                <div id="have-no-chats" style="display: none">
+                    <h6>You have no chats.</h6>
+                </div>
+                <div id="internet-warning" style="display: none">
+                    <span class="wifi">
+                        <i class="fa fa-wifi slash"></i>
+                    </span>
+                    <div>
+                        <h2>Unable to connect</h2>
+                        <p>Make sure your computer has an active Internet connection.</p>
+                        <a href="" onclick="window.location.reload()">Reload ></a>
+                    </div>
+                </div>
+                <div class="loader dark-bg">loading...</div>
+                <!-- <div class="tab" onclick="openTab(this, '${id}')">${name}</div> -->
+            </div>
+        </div>
+        <div class="central" id="central">
+            <div class="chat" id="basic">
+                <div class="title">
+                    <span>Welcome</span>
+                    <span class="chat-menu" style="width: 0; margin: 0; padding: 0;"></span>
+                </div>
+                <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <h1>Welcome to my Messager!</h1>
+                    <h4 style="text-align: center;">Here you can send messages to whomever you want.<br>
+                    Advanced features: Markdown styling, picture sharing,
+                    <br>
+                    reactions, custom chat styles, and more!</h4>
+                    <img src="favicon.png" alt="Messager" width="128px" height="128px">
+                </div>
+            </div>
+            <div class="write">
+                <button type="button" style="background:#006469;" id="media-button" title="Send image"><i class="fa fa-file-image-o"></i></button>
+                <textarea name="message" id="message" oninput="auto_grow(this);" onkeyup="if (event.keyCode == 13 && !event.shiftKey) {sendTyped(current); auto_grow(document.getElementById('message')); event.preventDefault()}"></textarea>
+                <button type="button" onclick="sendTyped(current); auto_grow(document.getElementById('message'));" style="background:#006469;" title="Send" id="msg-button"><i class="fa fa-paper-plane"></i></button>
+                <!-- Another (disfunctional) icon option: https://fontawesome.com/icons/paper-plane-top?s=regular -->
+                <!-- Alternative: &#10148; -->
+            </div>
+        </div>
+    </div>
+
+    <div id="new-chat" class="modal new-chat" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="new-chat-form">
+                <label for="title">Chat Title:</label>
+                <input type="text" name="title" oninput="disableColons(this)">
+                <br>
+                <label for="description">Chat Description:</label>
+                <textarea name="description"></textarea>
+                <br>
+                <input type="submit" value="Create Chat" onclick="sendCreateChat(this.parentElement); document.getElementById('new-chat').style.display = 'none';">
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+    <iframe name="hiddenFrame" width="0" height="0" style="display: none; border: none;"></iframe>
+    <div id="post-img" class="modal" style="display: none; background-color: rgba(0, 0, 0, 0.9);">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" action="/media" id="media-form" target="hiddenFrame">
+                <input type="file" id="image-upload" name="file" accept="image/png, image/jpeg" class="custom-file-input">
+                <div id="image-preview"></div>
+                <div class="img-button-container">
+                    <button class="close unclose" type="reset" id="cancel-image"><i class="fa fa-times"></i> Cancel</button>
+                    <button type="submit" id="submit-image" class="send-image">Send <i class="fa fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="tab-index-looper" tabindex="0" style="height: 0; width: 0; opacity: 0; position: fixed;" onfocus="document.querySelectorAll(`button, [href]:not(link), input, select, textarea, [tabindex]:not([tabindex='-1'])`)[0].focus()"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <script>
+        var current = "basic";
+        var fakeButton = {className: ""};
+    </script>
+    <script src="modal.js"></script>
+    <script src="fetching.js"></script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+    <script>
+    function openTab(button, name) {
+        console.log("Switching to tab " + name);
+        if (name == current) {
+            button = fakeButton;
+            name = "basic";
+        }
+        var i, tabcontent, tablinks;
+
+        for (const tabelement of document.getElementsByClassName("chat")) {
+            tabelement.style.display = "none";
+        }
+
+        for (const tablink of document.getElementsByClassName("tab")) {
+            tablink.className = tablink.className.replace(" active", "");
+        }
+
+        var element = document.getElementById(name);
+        if (element != null) {
+            element.style.display = "block";
+            scrollToBottom(element.getElementsByClassName('chat-content')[0]);
+        }
+        if (button != null) {
+            button.className += " active";
+            button.className = button.className.replace(" unread", "")
+        }
+        current = name;
+
+        for (var button of document.getElementsByClassName('write')[0].children) {
+            button.disabled = current == 'basic';
+        }
+
+        document.getElementById('message').placeholder = current == 'basic' ? `Select a chat and message away!` : `Send a message to ${title(current)}`;
+    }
+    openTab(fakeButton, current);
+
+    createModal(document.getElementById('create-chat'), document.getElementById('new-chat'));
+    createModal(document.getElementById('media-button'), document.getElementById('post-img'));
+
+    document.getElementById('submit-image').onclick = () => {
+        document.getElementById('media-form').action = '/media?dst=' + current;
+        setTimeout(() => {
+            document.getElementById('post-img').style.display = "none";
+            document.getElementById('image-upload').form.reset();
+            document.getElementById('image-preview').innerHTML = "";
+        }, 500);
+    }
+
+    document.getElementById('image-upload').addEventListener('change', () => {
+        const files = document.getElementById('image-upload').files;
+        if (files.length == 0) {
+            document.getElementById('image-preview').innerHTML = "";
+            return;
+        }
+        const file = files[0];
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = "";
+        console.log(file.name + "  " + file.size + "  " + file.type)
+        const image = document.createElement('img');
+        image.style = "width: auto; height: 400px;"
+        image.src = URL.createObjectURL(file);
+        preview.appendChild(image);
+    });
+
+    document.getElementById('cancel-image').addEventListener("click", () => {
+        document.getElementById('image-upload').value = "";
+        document.getElementById('image-upload').form.reset();
+        document.getElementById('image-preview').innerHTML = "";
+    });
+
+    function title(id) {
+        for (let i = 0; i < chatsCache.length; i++) {
+            [i, titl] = chatsCache[i].split('=');
+            if (i == id) return titl;
+        }
+        return "this chat";
+    }
+    </script>
+</body>
+
+</html>

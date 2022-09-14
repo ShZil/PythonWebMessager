@@ -1,0 +1,146 @@
+.menu-chat {
+    padding-top: 0px;
+}
+
+.menu-chat a {
+    all: unset;
+    cursor: pointer;
+}
+
+.menu-chat > div.modal-content {
+    border-radius: 25px;
+    width: 75%;
+    position: relative;
+    left: 0;
+    top: 0;
+    animation-name: animatetop-chat;
+    animation-duration: 0.4s;
+    background-color: var(--bright-bg);
+    border: none;
+    padding: 10px;
+    height: fit-content;
+    box-shadow: #00000088 0px 0px 20px;
+}
+
+.menu-chat > div.modal-content > span.close {
+    color: black;
+    font-size: 300%;
+    margin-top: 0;
+}
+
+.menu-chat > div.modal-content > span.close:hover {
+    color: #c40000;
+}
+
+.menu-chat > div.modal-content > span.close:active {
+    color: #eb0000;
+}
+
+.menu-chat > div.modal-content hr {
+    border: 0.7px solid #00000090;
+    width: 98%;
+}
+
+@keyframes animatetop-chat {
+    from {top: -500px; opacity: 0}
+    to {top: 0px; opacity: 1}
+}
+
+.menu-title {
+    text-align: center;
+    font-size: 40px;
+}
+
+.menu-title::before {
+    content: "\f0c0";
+    display: block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 96px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    margin: 10px auto;
+    border: 3px solid black;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    padding: 30px 15px 0px 15px;
+}
+
+.menu-subtitle {
+    text-align: center;
+}
+
+.menu-description {
+    padding: 15px;
+}
+
+.menu-members >ul {
+    list-style: none;
+}
+  
+.menu-members > ul li::before {
+    content: "\f007";
+    margin-right: 10.72px;
+    padding: 2px;
+    /* Copied from .fa: */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+.menu-members > ul li.add-plus::before {
+    content: "\f234";
+    margin-right: 5px;
+    color: var(--good);
+    -webkit-text-stroke: 1px black;
+}
+
+.menu-members > ul li.add-plus > button {
+    background: none;
+    border: 2px solid var(--good-dark);
+    outline: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.menu-members > ul li.add-plus > button:hover {
+    border-color: var(--good-medium);
+}
+
+.menu-members > ul li.add-plus > button:active {
+    border-color: var(--good-bright);
+}
+
+.menu-members > ul li.add-x::before {
+    content: "\f235";
+    margin-right: 5px;
+    color: var(--bad);
+    -webkit-text-stroke: 1px black;
+}
+
+.menu-members > ul li.add-x > button {
+    background: none;
+    border: 2px solid var(--bad-dark);
+    outline: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.menu-members > ul li.add-x > button:hover {
+    border: 2px solid var(--bad-medium);
+}
+
+.menu-members > ul li.add-x > button:active {
+    border-color: var(--bad-bright);
+}
+
+.menu-created {
+    font-size: 75%;
+    padding-left: 20px;
+}

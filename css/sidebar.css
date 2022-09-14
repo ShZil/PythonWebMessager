@@ -1,0 +1,218 @@
+div.profile {
+    width: 100%;
+    color: var(--text_passive);
+    background: var(--menu);
+    border-color: black;
+    display: flex;
+    border-radius: 7px 0px 0px 0px;
+    height: 35px;
+    /* display: grid;
+    grid-template-columns: 15% 70% 15%;
+    height: 30px; */
+}
+
+div.profile > img {
+    filter: invert(97%) sepia(7%) saturate(667%) hue-rotate(51deg) brightness(104%) contrast(102%);
+}
+
+div.profile > h3.name {
+    margin: 0;
+    color: var(--text_passive);
+    width: calc(100% - 60px);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 22px;
+    background: linear-gradient(90deg, var(--text_passive) 0%, var(--text_passive) 90%, rgba(0,0,0,0) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+}
+
+div.search {
+    color: black;
+    font-size: 16px;
+    width: 100%;
+    background-color: var(--menu);
+    display: flex;
+    height: 35px;
+}
+
+div.search > input[type=text] {
+    color: var(--text_passive);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 90%;
+    margin-left: 3px;
+}
+
+div.search > input[type=text]::placeholder {
+    opacity: 1;
+    color: var(--text_back);
+}
+
+div.search > button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+div.search > button:hover {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Container of the tabs to select chat */
+div.chat-container {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: var(--menu);
+    border-radius: 0px 0px 0px 7px;
+    height: 100%;
+    max-height: 85vh;
+}
+
+div.chat-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+div.chat-container::-webkit-scrollbar-track {
+    background: var(--tabs_button);
+}
+
+/* Handle */
+div.chat-container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 5px;
+
+}
+
+/* Handle on hover */
+div.chat-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text_passive);
+}
+
+/* Handle on hover */
+div.chat-container::-webkit-scrollbar-thumb:active {
+    background: var(--text_passive);
+}
+
+/* Tabs to select chat */
+div.tab {
+    height: 70px;
+    background-color: var(--tabs_button);
+    color: var(--text_passive);
+    font-weight: bolder;
+    padding-left: 10px;
+    font-size: xx-large;
+    line-height: 2; /* Changes to 1.25 */
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    position: relative;
+}
+
+div.tab:hover {
+    background: var(--tabs_button_h);
+}
+
+div.tab:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 4px white;
+}
+
+div.tab.active {
+    background: var(--tabs_button_a);
+    color: var(--text_passive);
+}
+
+div.tab.active:focus {
+    box-shadow: inset 0px 0px 2px white;
+}
+
+div.tab > .smaller {
+    font-size: 50%;
+    font-weight: normal;
+    opacity: 0.6;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+span.wifi {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.slash {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    padding: 6px 3px 0 3px;
+    position: relative;
+    background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
+}
+
+#internet-warning {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+    column-gap: 5px;
+    padding: 10px;
+    background-color: #d7a43c;
+}
+
+#internet-warning > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#internet-warning a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#internet-warning h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+#no-chats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#no-chats > h6 {
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--text_passive-gray);
+    text-align: center;
+    cursor: default;
+}
+
+#have-no-chats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#have-no-chats > h6 {
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--text_passive-gray);
+    text-align: center;
+    cursor: default;
+}

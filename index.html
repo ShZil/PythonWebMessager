@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sh. Messager</title>
+    <link rel="stylesheet" href="palette.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(this, 'login')">Log In</button>
+            <button class="tablinks" onclick="openTab(this, 'signup')">Sign Up</button>
+        </div>
+
+        <div id="login" class="tabcontent">
+            <form action="/login" method="post">
+                <label for="username0">Username:</label><br>
+                <input type="text" id="username0" name="username" value="" placeholder="Enter username..."><br><br>
+                <label for="password0">Password:</label><br>
+                <input type="password" id="password0" name="password" value="" placeholder="Enter password..."><br><br><br>
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+
+        <div id="signup" class="tabcontent">
+            <form action="/signup" method="post">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" value="" placeholder="Enter username..."><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" value="" placeholder="Enter password..."><br><br>
+                <label for="password2">Confirm password:</label><br>
+                <input type="password" id="password2" name="password2" value="" placeholder="Re-enter password..."><br><br><br>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+    <script>
+        function openTab(button, name) {
+            var i, tabcontent, tablinks;
+
+            for (const tabelement of document.getElementsByClassName("tabcontent")) {
+                tabelement.style.display = "none";
+            }
+
+            for (const tablink of document.getElementsByClassName("tablinks")) {
+                tablink.className = tablink.className.replace(" active", "");
+            }
+
+            document.getElementById(name).style.display = "block";
+            button.className += " active";
+        }
+        openTab(document.getElementsByClassName("tabs")[0].children[0], 'login');
+    </script>
+    <script src="password_eye.js"></script>
+</body>
+
+</html>

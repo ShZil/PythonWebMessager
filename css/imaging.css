@@ -1,0 +1,80 @@
+div#post-img {
+    top: auto;
+    left: auto;
+}
+
+div#post-img > div.modal-content {
+    position: static;
+    background: black;
+    border: none;
+}
+
+button.send-image {
+    background-color: var(--good);
+    width: 100px;
+    height: 60px;
+    cursor: pointer;
+}
+
+button.unclose {
+    background-color: var(--bad);
+    width: 100px;
+    height: 60px;
+    cursor: pointer;
+}
+
+div#image-preview {
+    width: 80%;
+    height: 80%;
+    min-height: 400px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+}
+
+form#media-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.img-button-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+input#image-upload {
+    color: white;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+    cursor: default;
+}
+
+.custom-file-input {
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.custom-file-input::before {
+    content: 'Send image';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin-right: -85px;
+    margin-left: 60px;
+    outline: none;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+
+.custom-file-input:hover::before {
+    border-color: #ddd;
+}

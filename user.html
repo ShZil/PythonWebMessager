@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sh. Messager</title>
+    <link rel="stylesheet" href="../palette.css">
+    <link rel="stylesheet" href="../user.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+    <!-- https://fontawesome.com/v4/icons/ -->
+    <meta http-equiv="refresh" content="300">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="center">
+        <div class="all">
+            <div class="profile">
+                <div style="padding: 5px" width="30" height="30"><i class="fa fa-user" onclick="userNav()" style="cursor: pointer"></i></div>
+                <h3 class="name" id="name">CLIENTNAME</h3>
+                <span class="logout fa fa-sign-out" onclick="logout();"></span>
+            </div>
+            <div class="central" id="central">
+                <div class="indent">
+                    <i class="fa fa-user"></i>
+                    <h1 class="name" id="username">USERNAME</h1>
+                    <h4 class="last-seen">LASTSEEN</h4>
+                    <h4 class="last-seen"></h4>
+                </div>
+                <h4 class="mutual-title">Mutual groups:</h4>
+                <ul class="mutual">
+                    MUTUAL
+                </ul>
+                <div class="create" onclick="createPrivate()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Create private chat
+                </div>
+            </div>
+            <div class="back" onclick="history.back()">
+                <i class="fa fa-backward" aria-hidden="true"></i> Back
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <script src="../fetching.js"></script>
+    <script src="../main.js"></script>
+    <script>
+        updating = false;
+        clearInterval(chatsInterval);
+
+        if (document.getElementById('name').textContent == username) {
+            console.log("self");
+            const create = document.getElementsByClassName('create')[0];
+            create.innerHTML = `
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+            Delete account`;
+            create.className += " delete";
+            create.onclick = async () => {
+                if (!window.confirm("Are you sure you want to delete your account?")) return;
+                var res = await post("/delete", "");
+                res = await res.text();
+                window.alert(res);
+                location.assign('/');
+            };
+        }
+
+        async function createPrivate() {
+            var me = document.getElementById('name').textContent;
+            setTimeout(() => {post('/')}, 200);
+
+            var res = await post(`/create`, `title=Chat between ${username} and ${me}&description=A private chat.&private=true`);
+            res = await res.text();
+            console.log(res);
+
+            if (!res.endsWith("Chat created.")) window.alert(res);
+
+            document.location.href = "/";
+        }
+
+        function simplifyTime() {
+            const lastSeen = document.getElementsByClassName('last-seen')[0];
+            const date = new Date(lastSeen.innerHTML.replace(' ', 'T') + ":00");
+            const now = new Date();
+            var time = now - date;
+            
+            var s = Math.floor(time / 1000);
+            var m = Math.floor(s / 60);
+            var h = Math.floor(m / 60);
+            var d = Math.floor(h / 24);
+            var w = Math.floor(d / 7);
+            var M = Math.floor(w / 4);
+            var y = Math.floor(M / 12);
+
+
+            lastSeen.style.display = "none";
+            const output = document.getElementsByClassName('last-seen')[1];
+            var x = "";
+            if (y > 0) {
+                x = y + " year" + (y > 1 ? 's' : '');
+            } else if (M > 0) {
+                x = M + " month" + (M > 1 ? 's' : '');
+            } else if (w > 0) {
+                x = w + " week" + (w > 1 ? 's' : '');
+            } else if (d > 0) {
+                x = d + " day" + (d > 1 ? 's' : '');
+            } else if (h > 0) {
+                x = h + " hour" + (h > 1 ? 's' : '');
+            } else if (m > 0) {
+                x = m + " minute" + (m > 1 ? 's' : '');
+            }
+
+            if (x == "") {
+                output.textContent = "Last seen just now.";
+                console.log("Seconds: " + s);
+            }
+            else output.textContent = "Last seen " + x + " ago.";
+        }
+
+        startInterval(1, simplifyTime);
+
+        if (document.getElementsByClassName('mutual')[0].innerHTML.trim() == "<li>All</li>") {
+            document.getElementsByClassName('mutual')[0].className += " on";
+        }
+
+        if (document.getElementsByClassName('mutual')[0].innerHTML.trim() == "<li>None</li>") {
+            document.getElementsByClassName('mutual')[0].className += " off";
+        }
+    </script>
+</body>
+
+</html>
